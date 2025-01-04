@@ -1,0 +1,1 @@
+This library helps to optimize the creation of APIs with FastAPI and PostgresDB.
