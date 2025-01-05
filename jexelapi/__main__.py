@@ -47,7 +47,7 @@ help = """
 init        to initialize api code
         --summary="some sumary" (need)
         --name="app FastAPI TEST rest-api" (need)
-        --description="some fastapi automatizad api" (need)
+        --description="some fastapi api" (need)
 
 module      to initialize a module
         --module_type=basic (basic default)
@@ -57,13 +57,7 @@ module      to initialize a module
 for item in argv:
     if item == "init":
         initialize_app()
-        exit()
     elif item == "module":
         new_module()
-        exit()
     elif item in ('-h', '--h', '-help', '--help'):
         print(help)
-        exit()
-    
-    print(help)
-    

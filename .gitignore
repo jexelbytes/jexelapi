@@ -1,2 +1,5 @@
 .env
 main.ipynb
+build
+dist
+jexelapi.egg-info

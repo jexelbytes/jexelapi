@@ -1,4 +1,4 @@
-# A generic, single database configuration.
+alembic_init = """# A generic, single database configuration.
 
 [alembic]
 # path to migration scripts
@@ -115,3 +115,137 @@ formatter = generic
 [formatter_generic]
 format = %(levelname)-5.5s [%(name)s] %(message)s
 datefmt = %H:%M:%S
+"""
+
+env = """# SERVER
+HOST=127.0.0.1
+PORT=80
+DEV_KEY=devkey
+
+# DATABASE
+DATABASE_TYPE='postgresql'
+DATABASE_NAME='some_db'
+DATABASE_USER='postgres'
+DATABASE_PASS='postgres'
+DBHOST='0.0.0.0'
+DBPORT='5432'
+
+# SWAGGER
+IS_DEVELOP=True
+SWAGGER_USER=admin
+SWAGGER_PASS=admin
+
+# JWT
+JWT_SECRET=secret
+JWT_ALGORITHM=HS256
+JWT_EXPIRE_TIME = 600
+JWT_REFRESH_EXPIRE_TIME = 600
+
+# EMAIL CREDENTIALS
+EMAIL=email@email.com
+EMAIL_PASS=somepass
+EMAIL_PORT=465
+EMAIL_HOST=smtp.gmail.com
+
+# AWS CREDENTIALS
+AWS_S3_BUCKET=""
+AWS_S3_KEY=""
+AWS_S3_SECRET=""
+AWS_S3_ZONE=""
+"""
+
+requirements = """alembic==1.14.0
+annotated-types==0.7.0
+anyio==4.7.0
+boto3==1.35.92
+botocore==1.35.92
+CacheControl==0.14.1
+cachetools==5.5.0
+certifi==2024.12.14
+cffi==1.17.1
+charset-normalizer==3.4.1
+click==8.1.8
+colorama==0.4.6
+configparser==7.1.0
+cryptography==44.0.0
+dnspython==2.7.0
+email_validator==2.2.0
+fastapi==0.115.6
+firebase-admin==6.6.0
+google-api-core==2.24.0
+google-api-python-client==2.157.0
+google-auth==2.37.0
+google-auth-httplib2==0.2.0
+google-cloud-core==2.4.1
+google-cloud-firestore==2.19.0
+google-cloud-storage==2.19.0
+google-crc32c==1.6.0
+google-resumable-media==2.7.2
+googleapis-common-protos==1.66.0
+grpcio==1.68.1
+grpcio-status==1.68.1
+h11==0.14.0
+httplib2==0.22.0
+idna==3.10
+Jinja2==3.1.5
+jmespath==1.0.1
+Mako==1.3.8
+MarkupSafe==3.0.2
+msgpack==1.1.0
+proto-plus==1.25.0
+protobuf==5.29.2
+psycopg2==2.9.10
+pyasn1==0.6.1
+pyasn1_modules==0.4.1
+pycparser==2.22
+pydantic==2.10.4
+pydantic_core==2.27.2
+PyJWT==2.10.1
+PyMySQL==1.1.1
+pyparsing==3.2.1
+python-dateutil==2.9.0.post0
+python-dotenv==1.0.1
+python-multipart==0.0.20
+requests==2.32.3
+rsa==4.9
+s3transfer==0.10.4
+shutils==0.1.0
+six==1.17.0
+sniffio==1.3.1
+SQLAlchemy==2.0.36
+SQLAlchemy-Utils==0.41.2
+starlette==0.41.3
+typing_extensions==4.12.2
+uritemplate==4.1.1
+urllib3==2.3.0
+uvicorn==0.34.0
+"""
+ALEMBIC_README="""Generic single-database configuration."""
+
+ALEMBIC_SCRIPT='''"""${message}
+
+Revision ID: ${up_revision}
+Revises: ${down_revision | comma,n}
+Create Date: ${create_date}
+
+"""
+from typing import Sequence, Union
+
+from alembic import op
+import sqlalchemy as sa
+${imports if imports else ""}
+
+# revision identifiers, used by Alembic.
+revision: str = ${repr(up_revision)}
+down_revision: Union[str, None] = ${repr(down_revision)}
+branch_labels: Union[str, Sequence[str], None] = ${repr(branch_labels)}
+depends_on: Union[str, Sequence[str], None] = ${repr(depends_on)}
+
+
+def upgrade() -> None:
+    ${upgrades if upgrades else "pass"}
+
+
+def downgrade() -> None:
+    ${downgrades if downgrades else "pass"}
+'''

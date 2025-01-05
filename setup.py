@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='jexelapi',
-    version='1.0.8',
+    version='1.0.12',
     packages=find_packages(),
     description='This library helps to optimize the creation of APIs with FastAPI',
     long_description=open('readme.md',encoding='utf-8').read(),

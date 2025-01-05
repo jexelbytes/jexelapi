@@ -3,8 +3,16 @@ import shutil
 import os
 
 def create_basic_module(name:str):
-    dir = f"./src/{name}"
-    layouts_path = "./controllers/modules/layout/basic"
+    base_dir = "./src"
+    
+    if os.getcwd().split("\\")[-1] == "src":
+        base_dir = "./"
+        
+    dir = f"{base_dir}/{name}"
+    
+    realpath = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/")
+    
+    layouts_path = f"{realpath}/layout/basic"
     
     os.mkdir(dir)
     
@@ -26,8 +34,8 @@ def create_basic_module(name:str):
     import_string_app = f'\nfrom {name}.router import router as {name}_router\napp.include_router({name}_router, tags=["{create_tag_name(name=name)}"], prefix="/api")\n'
     import_string_models = f'\nfrom {name}.db_model import *\n'
     
-    appendtextfile(path="./src/app.py", text=import_string_app)
-    appendtextfile(path="./src/models.py", text=import_string_models)
+    appendtextfile(path=f"{base_dir}/app.py", text=import_string_app)
+    appendtextfile(path=f"{base_dir}/models.py", text=import_string_models)
     
     print("Done!")
     
