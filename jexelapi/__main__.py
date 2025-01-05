@@ -1,6 +1,6 @@
 from sys import argv
-from controllers.exceptions.exceptions import InvalidArgumentExecption, RequiredArgumentException
-from controllers.modules.basic import create_basic_module
+from .controllers.exceptions.exceptions import InvalidArgumentExecption, RequiredArgumentException
+from .controllers.modules.basic import create_basic_module
     
 def initialize_app():
     
@@ -16,7 +16,7 @@ def initialize_app():
         elif "--description=" in argument:
             description = argument.replace("--description=","")
     
-    from controllers.init.init import initialize
+    from .controllers.init.init import initialize
     initialize(app_name=name, app_summary=summary, app_description=description)
 
 def new_module():
@@ -43,10 +43,27 @@ def new_module():
     elif module_type == "complex":
         print("complex")
 
+help = """
+init        to initialize api code
+        --summary="some sumary" (need)
+        --name="app FastAPI TEST rest-api" (need)
+        --description="some fastapi automatizad api" (need)
+
+module      to initialize a module
+        --module_type=basic (basic default)
+        --name="example name" (need)
+"""
+
 for item in argv:
     if item == "init":
         initialize_app()
+        exit()
     elif item == "module":
         new_module()
-    elif item == "":
-        pass
+        exit()
+    elif item in ('-h', '--h', '-help', '--help'):
+        print(help)
+        exit()
+    
+    print(help)
+    

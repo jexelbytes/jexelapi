@@ -1,4 +1,4 @@
-from controllers.utilities import render_file, appendtextfile
+from ..utilities import render_file, appendtextfile
 import shutil
 import os
 
